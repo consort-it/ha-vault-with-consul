@@ -6,7 +6,7 @@ This assumes you have [Vagrant](https://www.vagrantup.com/) installed and workin
 - vagrant-cachier
 - vagrant-vbguest
 
-#### About this repository
+### About this repository
 
 This setup implements a highly available (HA) Vault cluster with Consul storage backend. There are many [more backends](https://www.vaultproject.io/docs/configuration/storage/index.html), each with pros, cons, advantages, and trade-offs. For example, some backends support high availability (Consul does) while others provide a more robust backup and restoration process. As Consul (like Vault) is a HashiCorp tool, I assume these two play together very well.
 
@@ -18,13 +18,13 @@ That being a simplified setup, all native Vault and Consul ports (TCP/8200, TCP/
 
 Let's go!
 
-#### Clone repository
+### Clone repository
 
 ```bash
 git clone https://github.com/consort-it/ha-vault-with-consul.git
 ```
 
-#### Start Vault cluster
+### Start Vault cluster
 
 ```bash
 cd ha-vault-with-consul
@@ -32,7 +32,7 @@ cd ha-vault-with-consul
 vagrant up --provision
 ```
 
-#### Initialize and unseal Vault
+### Initialize and unseal Vault
 
 Because of Vault's unsealing process, __every__ single Vault node needs to be unsealed. This is a very manual process.
 
@@ -51,7 +51,7 @@ curl -X PUT -d "{\"key\": \"$VAULT_UNSEAL_KEY\"}" http://10.10.10.13:8200/v1/sys
 exit
 ```
 
-#### Insert test data
+### Insert test data
 
 ```bash
 vagrant ssh vault01
@@ -65,7 +65,7 @@ echo $VAULT_TOKEN
 exit
 ```
 
-#### Do some testing
+### Do some testing
 
 Open a shell on your host without entering any Vagrant box. For better readability make sure that _jq_ is installed on your system. Though, all commands will work without it, too. Just cut it.
 
@@ -194,7 +194,7 @@ Address                 Seal Status     Health          Leader
 OK: Service 'vault' is functioning correctly.
 ```
 
-#### Cleanup
+### Cleanup
 
 ```bash
 vagrant destroy -f
