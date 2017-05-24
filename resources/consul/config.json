@@ -1,0 +1,8 @@
+{
+  "encrypt": "qjCVEyjpC2kFWT3w77n7dg==",
+  "ports": {
+    "dns": -1,
+    "http": 8500,
+    "https": -1
+  }
+}

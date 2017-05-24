@@ -1,0 +1,41 @@
+upstream consul-ui {
+  server {{ consul01_int_ip }}:8500;
+  server {{ consul02_int_ip }}:8500;
+  server {{ consul03_int_ip }}:8500;
+}
+
+upstream vault {
+  server {{ consul01_int_ip }}:8200;
+  server {{ consul02_int_ip }}:8200;
+  server {{ consul03_int_ip }}:8200;
+}
+
+upstream vault-ui {
+  server {{ consul01_int_ip }}:8000;
+  server {{ consul02_int_ip }}:8000;
+  server {{ consul03_int_ip }}:8000;
+}
+
+server {
+  listen 9000;
+
+  location / {
+    proxy_pass http://vault-ui;
+  }
+}
+
+server {
+  listen 9500;
+
+  location / {
+    proxy_pass http://consul-ui;
+  }
+}
+
+server {
+  listen 9200;
+
+  location / {
+    proxy_pass http://vault;
+  }
+}
