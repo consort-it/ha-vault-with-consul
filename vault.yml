@@ -87,6 +87,9 @@
         - vault02
         - vault03
 
+    - name: create nginx RelativeTargetDirectory
+      file: path=/etc/nginx/sites-available state=directory owner=root group=root mode=0750
+
     - name: nginx load balancer config is present
       template: src=resources/nginx/lb dest=/etc/nginx/sites-available/lb owner=root group=root mode=0644
 
